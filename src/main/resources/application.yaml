@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: shop
+  datasource:
+    url: jdbc:postgresql://localhost:5432/database
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    create-schemas: true
+    schemas: inventory,auth,ordering
+
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
