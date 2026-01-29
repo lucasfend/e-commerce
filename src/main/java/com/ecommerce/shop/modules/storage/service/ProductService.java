@@ -1,11 +1,14 @@
 package com.ecommerce.shop.modules.storage.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.shop.modules.storage.domain.Product;
 import com.ecommerce.shop.modules.storage.dto.ProductRequest;
+import com.ecommerce.shop.modules.storage.dto.ProductResponse;
 import com.ecommerce.shop.modules.storage.mapper.ProductMapper;
 import com.ecommerce.shop.modules.storage.repository.ProductRepository;
 
@@ -24,6 +27,11 @@ public class ProductService {
         return repository.save(payloadObject);
     }
 
+    public List<ProductResponse> getAll() {
+        List<Product> allProducts = repository.findAll();
+        return (mapper.toResponseList(allProducts));
+    }
+
     public void update(ProductRequest request) {
         Product payloadObject = mapper.toProductFromRequest(request);
 
@@ -36,7 +44,7 @@ public class ProductService {
             existingProduct.setPrice(payloadObject.getPrice());
             existingProduct.setStockQuantity(payloadObject.getStockQuantity());
             existingProduct.setIsFrozen(payloadObject.getIsFrozen());
-            existingProduct.setExpiration_date(payloadObject.getExpiration_date());
+            existingProduct.setExpirationDate(payloadObject.getExpirationDate());
             existingProduct.setGrams(payloadObject.getGrams());
             existingProduct.setPackageQuantity(payloadObject.getPackageQuantity());
 
@@ -45,8 +53,8 @@ public class ProductService {
         }
     }
 
-    public void delete(ProductRequest request) {
-        repository.deleteById(mapper.toProductFromRequest(request).getId());
+    public void delete(UUID payloadId) {
+        repository.deleteById(payloadId);
     }
 
 }

@@ -1,5 +1,7 @@
 package com.ecommerce.shop.modules.storage.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -16,4 +18,6 @@ public interface ProductMapper {
     ProductResponse toProductResponse(Product product);
 
     ProductRequest toProductRequest(Product product);
+
+    List<ProductResponse> toResponseList(List<Product> products);
 }
