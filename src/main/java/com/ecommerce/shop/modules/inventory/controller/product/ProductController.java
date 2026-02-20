@@ -1,4 +1,4 @@
-package com.ecommerce.shop.modules.storage.controller;
+package com.ecommerce.shop.modules.inventory.controller.product;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ecommerce.shop.modules.storage.domain.Product;
-import com.ecommerce.shop.modules.storage.dto.ProductRequest;
-import com.ecommerce.shop.modules.storage.dto.ProductResponse;
-import com.ecommerce.shop.modules.storage.service.ProductService;
+import com.ecommerce.shop.modules.inventory.dto.productDTOs.ProductRequest;
+import com.ecommerce.shop.modules.inventory.dto.productDTOs.ProductResponse;
+import com.ecommerce.shop.modules.inventory.service.product.ProductService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +28,7 @@ public class ProductController {
     private final ProductService service;
 
     @PostMapping("post")
-    public ResponseEntity<Product> save(@RequestBody ProductRequest payload) {
+    public ResponseEntity<ProductResponse> save(@RequestBody ProductRequest payload) {
         return ResponseEntity.ok(service.save(payload));
     }
 

@@ -1,4 +1,4 @@
-package com.ecommerce.shop.modules.storage.domain;
+package com.ecommerce.shop.modules.inventory.domain;
 
 import java.time.LocalDate;
 import java.util.UUID;

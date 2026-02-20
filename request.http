@@ -1,0 +1,115 @@
+### 
+
+@baseUrl = http://localhost:8080
+
+
+### schema: inventory | testing storage endpoints
+
+
+### persistency
+
+POST {{baseUrl}}/storage/post HTTP/1.1
+Content-Type: application/json
+
+{
+  "expirationDate": "2026-10-10",
+  "grams": 5,
+  "isFrozen": false,
+  "name": "test2",
+  "packageQuantity": 50,
+  "price": 2,
+  "stockQuantity": 2
+}
+
+
+### get all
+
+GET {{baseUrl}}/storage/get HTTP/1.1
+
+
+### delete by id
+
+DELETE {{baseUrl}}/storage/delete/893a88e5-7e28-40fa-8d15-448152850bd1 HTTP/1.1
+
+
+### update existing product
+
+PUT {{baseUrl}}/storage/put HTTP/1.1
+
+{
+  "expirationDate": "2026-10-10",
+  "grams": 5,
+  "isFrozen": true,
+  "name": "test1",
+  "packageQuantity": 60,
+  "price": 2100,
+  "stockQuantity": 10
+}
+
+
+### pricing endpoint
+
+POST {{baseUrl}}/supply HTTP/1.1
+
+{
+  "dough": {
+    "supplies": [
+      {
+        "kilos": 5,
+        "name": "Farinha",
+        "price": 19.90,
+        "purchaseDate": "2023-10-27",
+        "recipeUseInGrams": 3000
+      },
+      {
+        "kilos": 1,
+        "name": "Margarina",
+        "price": 14.70,
+        "purchaseDate": "2023-10-25",
+        "recipeUseInGrams": 300
+      },
+      {
+        "kilos": 1,
+        "name": "Caldo de Galinha",
+        "price": 18.90,
+        "purchaseDate": "2023-10-20",
+        "recipeUseInGrams": 120.0
+      },
+      {
+        "kilos": 1,
+        "name": "Purê de batata",
+        "price": 51.20,
+        "purchaseDate": "2023-10-27",
+        "recipeUseInGrams": 300
+      }
+    ]
+  },
+  "filling": {
+    "supplies": [
+      {
+        "kilos": 3,
+        "name": "Peito de Frango",
+        "price": 66.0,
+        "purchaseDate": "2023-10-27",
+        "recipeUseInGrams": 3000
+      },
+      {
+        "kilos": 1,
+        "name": "Caldo de Galinha",
+        "price": 18.90,
+        "purchaseDate": "2023-10-20",
+        "recipeUseInGrams": 100.0
+      },
+      {
+        "kilos": 1,
+        "name": "Purê de batata",
+        "price": 51.20,
+        "purchaseDate": "2023-10-27",
+        "recipeUseInGrams": 300
+      }
+    ]
+  },
+  "grams": 15.0,
+  "productName": "Coxinha Frango",
+  "profitPercentage": 150
+}

@@ -1,4 +1,4 @@
-package com.ecommerce.shop.modules.storage.service;
+package com.ecommerce.shop.modules.inventory.service.product;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,11 +6,11 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.shop.modules.storage.domain.Product;
-import com.ecommerce.shop.modules.storage.dto.ProductRequest;
-import com.ecommerce.shop.modules.storage.dto.ProductResponse;
-import com.ecommerce.shop.modules.storage.mapper.ProductMapper;
-import com.ecommerce.shop.modules.storage.repository.ProductRepository;
+import com.ecommerce.shop.modules.inventory.domain.Product;
+import com.ecommerce.shop.modules.inventory.dto.productDTOs.ProductRequest;
+import com.ecommerce.shop.modules.inventory.dto.productDTOs.ProductResponse;
+import com.ecommerce.shop.modules.inventory.mapper.ProductMapper;
+import com.ecommerce.shop.modules.inventory.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,10 +21,11 @@ public class ProductService {
     private final ProductRepository repository;
     private final ProductMapper mapper;
 
-    public Product save(ProductRequest request) {
+    public ProductResponse save(ProductRequest request) {
         Product payloadObject = mapper.toProductFromRequest(request);
+        repository.save(payloadObject);
 
-        return repository.save(payloadObject);
+        return mapper.toProductResponse(payloadObject);
     }
 
     public List<ProductResponse> getAll() {
@@ -48,8 +49,10 @@ public class ProductService {
             existingProduct.setGrams(payloadObject.getGrams());
             existingProduct.setPackageQuantity(payloadObject.getPackageQuantity());
 
+            System.out.println("Product " + payloadObject.getName() + " successfully updated");
+
         } else {
-            throw new RuntimeException();
+            System.out.println("Product not found.");
         }
     }
 

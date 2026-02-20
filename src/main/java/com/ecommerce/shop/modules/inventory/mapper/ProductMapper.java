@@ -1,19 +1,19 @@
-package com.ecommerce.shop.modules.storage.mapper;
+package com.ecommerce.shop.modules.inventory.mapper;
 
 import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-import com.ecommerce.shop.modules.storage.domain.Product;
-import com.ecommerce.shop.modules.storage.dto.ProductRequest;
-import com.ecommerce.shop.modules.storage.dto.ProductResponse;
+import com.ecommerce.shop.modules.inventory.domain.Product;
+import com.ecommerce.shop.modules.inventory.dto.productDTOs.ProductRequest;
+import com.ecommerce.shop.modules.inventory.dto.productDTOs.ProductResponse;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ProductMapper {
-    Product toProductFromResponse(ProductResponse response);
+    Product toProductFromResponse(ProductResponse product);
 
-    Product toProductFromRequest(ProductRequest request);
+    Product toProductFromRequest(ProductRequest product);
 
     ProductResponse toProductResponse(Product product);
 
