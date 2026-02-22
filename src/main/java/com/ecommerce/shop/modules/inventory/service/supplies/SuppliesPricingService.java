@@ -11,7 +11,7 @@ import com.ecommerce.shop.modules.inventory.service.helper.RecipeObject;
 @Service
 public class SuppliesPricingService {
 
-    private static final double WATER_QUANTITY_PER_RECIPE = 1675;
+    private static final double WATER_QUANTITY_PER_RECIPE = 1460;
     private static final double DOUGH_PERCENTAGE = 0.7;
     private static final double FILLING_PERCENTAGE = 0.3;
     private static final double OPERATIONAL_COST_PERCENTAGE = 0.2;
@@ -24,19 +24,21 @@ public class SuppliesPricingService {
         double fillingPerUnit = payload.grams() * FILLING_PERCENTAGE;
 
         double costDough = doughData.unitPrice() * doughPerUnit;
-        System.out.println("Preco unit. massa apenas -> " + costDough);
 
         double costFilling = fillingData.unitPrice() * fillingPerUnit;
-        System.out.println("Preco unit. recheio apenas -> " + costFilling);
 
         double finalCostProdPerUnit = (costDough + costFilling)
                 + ((costDough + costFilling) * OPERATIONAL_COST_PERCENTAGE);
 
-        System.out.println("Custo sem profit ainda -> " + finalCostProdPerUnit);
+        double finalCostWithProfit = finalCostProdPerUnit + (finalCostProdPerUnit * (payload.profitPercentage() / 100));
 
-        double finalCostWithProfit = finalCostProdPerUnit + .2
-                + (finalCostProdPerUnit * (payload.profitPercentage() / 100));
-        System.out.println("Custo com 150% de profit -> " + finalCostWithProfit);
+        System.out.println("--- DEBUG UNITARIO ---");
+        System.out.println("Massa: " + doughPerUnit);
+        System.out.println("Recheio: " + fillingPerUnit);
+        System.out.println("Custo Massa: " + costDough);
+        System.out.println("Custo Recheio: " + costFilling);
+        System.out.println("Custo c/ Operacional: " + finalCostProdPerUnit);
+        System.out.println("Preço Final: " + finalCostWithProfit);
 
         return new FullCost(finalCostWithProfit, (finalCostWithProfit * 100));
     }
@@ -57,15 +59,11 @@ public class SuppliesPricingService {
 
                     yield += supply.recipeUseInGrams() + waterAmount;
 
-                    System.out.println("calculando farinha peso -> " + String.format("$%.2f", yield));
                 }
             } else {
                 yield += supply.recipeUseInGrams();
-                System.out.println("calculando recheio peso -> " + yield);
             }
         }
-
-        System.out.println("Preco por grama " + priceOfSupplyPerRecipe / yield * 15.0);
 
         return new RecipeObject(priceOfSupplyPerRecipe, yield, priceOfSupplyPerRecipe / yield);
     }

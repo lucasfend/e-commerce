@@ -55,61 +55,68 @@ POST {{baseUrl}}/supply HTTP/1.1
   "dough": {
     "supplies": [
       {
-        "kilos": 5,
-        "name": "Farinha",
-        "price": 19.90,
+        "kilos": 1,
+        "name": "Leite",
+        "price": 4.90,
         "purchaseDate": "2023-10-27",
-        "recipeUseInGrams": 3000
+        "recipeUseInGrams": 1000
       },
       {
         "kilos": 1,
-        "name": "Margarina",
-        "price": 14.70,
+        "name": "Oleo",
+        "price": 6.95,
         "purchaseDate": "2023-10-25",
-        "recipeUseInGrams": 300
+        "recipeUseInGrams": 200
       },
       {
         "kilos": 1,
-        "name": "Caldo de Galinha",
-        "price": 18.90,
+        "name": "Sal",
+        "price": 3.0,
         "purchaseDate": "2023-10-20",
-        "recipeUseInGrams": 120.0
+        "recipeUseInGrams": 40
       },
       {
         "kilos": 1,
-        "name": "Purê de batata",
-        "price": 51.20,
+        "name": "Acucar",
+        "price": 4.95,
         "purchaseDate": "2023-10-27",
-        "recipeUseInGrams": 300
+        "recipeUseInGrams": 160
+      },
+      {
+        "kilos": 0.6,
+        "name": "Baunilha",
+        "price": 10.0,
+        "purchaseDate": "2023-10-27",
+        "recipeUseInGrams": 0.6
+      },
+      {
+        "kilos": 2,
+        "name": "Farinha",
+        "price": 9.40,
+        "purchaseDate": "2023-10-27",
+        "recipeUseInGrams": 2000
+      },
+      {
+        "kilos": 1,
+        "name": "Flocao",
+        "price": 4.70,
+        "purchaseDate": "2023-10-27",
+        "recipeUseInGrams": 200
       }
     ]
   },
   "filling": {
     "supplies": [
       {
-        "kilos": 3,
-        "name": "Peito de Frango",
-        "price": 66.0,
+        "kilos": 2.4,
+        "name": "Leite Condensado",
+        "price": 110.0,
         "purchaseDate": "2023-10-27",
-        "recipeUseInGrams": 3000
-      },
-      {
-        "kilos": 1,
-        "name": "Caldo de Galinha",
-        "price": 18.90,
-        "purchaseDate": "2023-10-20",
-        "recipeUseInGrams": 100.0
-      },
-      {
-        "kilos": 1,
-        "name": "Purê de batata",
-        "price": 51.20,
-        "purchaseDate": "2023-10-27",
-        "recipeUseInGrams": 300
+        "recipeUseInGrams": 1200
       }
     ]
   },
-  "grams": 15.0,
-  "productName": "Coxinha Frango",
-  "profitPercentage": 150
+  "grams": 17.0,
+  "productName": "Churros",
+  "profitPercentage": 100
 }
